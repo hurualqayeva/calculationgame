@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="game.css">
+    </head>
+
+    <body>
+    
+    
+        <div id="game">
+<h1>Hesab oyunu</h1>
+<span id="number1">0</span>
+<span id="operator">+</span>
+<span id="number2">0</span>
+<span>=</span>
+<input type="text" id="result">
+<input type="button" id="answer" value="Yoxla">
+<div style="clear: both;"></div>
+<div id="True">0</div>
+<div id="False">0</div>
+<div style="clear: both;"></div>
+        </div>
+        <script>
+            var number1,operator,number2,result,answer,False=0,True=0;
+    number1=document.getElementById('number1');
+    number2=document.getElementById('number2');
+    operator=document.getElementById('operator');
+    result=document.getElementById('result');
+    answer=document.getElementById('answer');
+    False=document.getElementById('False');
+    True=document.getElementById('True');
+    function RandomNum(min,max){
+    var number=Math.floor(Math.random()*(max-min))+min;
+    return number;
+    } RandomNum();
+    function newquestion(){ 
+    var operation= ["+","-","*","/"];
+    operator.textContent=operation[RandomNum(0,4)];
+    number1.textContent=RandomNum(1,10);
+    number2.textContent=RandomNum(0,10);
+    if(operator.textContent=="/"){
+    while(true){
+        number2.textContent=RandomNum(0,10);
+        if(number1.textContent%number2.textContent==0){
+            break;
+        }}
+       
+        }
+        if(operator.textContent=="-"){
+    while(true){
+        number2.textContent=RandomNum(0,50);
+        var neg=number1.textContent-number2.textContent;
+    
+
+        if(neg>0){
+           break;
+        }}}
+      
+      
+       }
+    window.onload=function(){
+    newquestion();
+    }
+    answer.onclick=function(){
+    var ans,n1,n2;
+    n1=Number(number1.textContent);
+    n2=Number(number2.textContent);
+    switch(operator.textContent){
+        case '+': ans=n1+n2;break;
+        case '-': ans=n1-n2;break;
+        case '*': ans=n1*n2;break;
+        case '/': ans=n1/n2;break;
+        default:break;}
+        if(result.value==ans){
+            True.textContent=Number(True.textContent)+1;
+        }
+        else{
+            False.textContent=Number(False.textContent)+1;
+        
+    }     document.getElementById("result").value = "";
+
+    
+    newquestion();}
+
+        </script>
+      
+    </body>
+
+</html>
